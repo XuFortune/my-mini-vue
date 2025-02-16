@@ -6,7 +6,7 @@ export const ShapeFlags = {
     FRAGMENT: 1 << 2,//00000100
     COMPONENT: 1 << 3,//00001000
     TEXT_CHILDREN: 1 << 4,//00010000
-    ARRAR_CHILDREN: 1 << 5,//00100000
+    ARRAY_CHILDREN: 1 << 5,//00100000
     CHILDREN: (1 << 4) | (1 << 5),//00110000
 }
 
@@ -36,12 +36,14 @@ export function h(type,props,children){
         shapeFlag |= ShapeFlags.TEXT_CHILDREN
         children = children.toString()
     }else if (isArray(children)){
-        shapeFlag |= ShapeFlags.ARRAR_CHILDREN
+        shapeFlag |= ShapeFlags.ARRAY_CHILDREN
     }
     return {
         type,
         props,
         children,
-        shapeFlag
+        shapeFlag,
+        el:null,
+        anchor:null
     }
 }
